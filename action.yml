@@ -1,5 +1,8 @@
 name: 'Install Terragrunt'
 description: 'Installs the specified version of Terragrunt'
+branding:
+  icon: align-justify
+  color: blue
 inputs:
   terragrunt-version:
     description: 'Version of Terragrunt you want to install'
