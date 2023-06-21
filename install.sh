@@ -3,4 +3,4 @@
 #chmod +x bin/terragrunt
 #echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
 
-echo "${{ inputs.terragrunt-version }}"
+echo $terragrunt-version
