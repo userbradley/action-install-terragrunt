@@ -10,5 +10,12 @@ runs:
   steps:
     - run: echo Version ${{ inputs.terragrunt-version }}.
       shell: bash
+
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - run: goodbye.sh
+      shell: bash
+
+
     - run: install.sh
       shell: bash
