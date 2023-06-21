@@ -3,4 +3,4 @@
 #chmod +x bin/terragrunt
 #echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
 
-echo ${{ inputs.who-to-greet }}
+echo "${{ inputs.who-to-greet }}"
