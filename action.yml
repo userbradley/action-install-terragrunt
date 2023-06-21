@@ -17,4 +17,4 @@ runs:
     - run: install.sh
       shell: bash
       env:
-        terragrunt-version: ${{ inputs.terragrunt-version }}
+        VERSION: ${{ inputs.terragrunt-version }}
