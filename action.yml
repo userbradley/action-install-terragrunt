@@ -1,5 +1,6 @@
 name: 'Install Terragrunt'
 description: 'Installs the specified version of Terragrunt'
+
 inputs:
   terragrunt-version:
     description: 'Version of Terragrunt you want to install'
@@ -16,3 +17,9 @@ runs:
       shell: bash
       env:
         VERSION: ${{ inputs.terragrunt-version }}
+
+branding:
+  icon: align-justify
+  color: blue
+
+author: 'userbradley'
