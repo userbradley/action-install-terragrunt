@@ -14,7 +14,7 @@ jobs:
     name: Terragrunt
     steps:
       - name: Terragrunt Install
-        uses: userbradley/action-terragrunt-install@v1.1.0
+        uses: userbradley/action-install-terragrunt@v1.1.1
 ```
 ## Inputs
 
@@ -38,7 +38,7 @@ jobs:
     name: Terragrunt
     steps:
       - name: Terragrunt Install
-        uses: userbradley/action-terragrunt-install@v1.1.0
+        uses: userbradley/action-install-terragrunt@v1.1.1
         with:
           version: "v0.51.6"
 ```
