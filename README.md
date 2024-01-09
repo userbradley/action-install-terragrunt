@@ -1,33 +1,47 @@
-# GitHub actions: Install Terragrunt
-
-## Why
-
-There does not seem to be a clean terragrunt install workflow, so I made one
+# Install Terragrunt GitHub Action
 
 ## How to use
 
 ```yaml
-on: [push]
-name: Install terragrunt
-
+name: Terragrunt
+on:
+  push:
+    branches:
+      - main
 jobs:
-  deploy:
+  job_id:
     runs-on: ubuntu-latest
-    name: Deploys Terragrunt
+    name: Terragrunt
     steps:
-      - uses: actions/checkout@v3
-        
-      - id: install-tg
-        uses: userbradley/actions-install-terragrunt@v1.0.0
-        with:
-          terragrunt-version: 'v0.47.0'
+      - name: Terragrunt Install
+        uses: userbradley/action-terragrunt-install@v1.1.0
 ```
-
 ## Inputs
 
-| Name                 | Value     | Type     | 
-|----------------------|-----------|----------|
-| `terragrunt-version` | `v0.47.0` | `string` |
+| Name      | Description                                    | Required | Default Value |
+|-----------|------------------------------------------------|----------|---------------|
+| `version` | Version of Terragrunt that should be installed | `false`  | `v0.54.12`    |
+
+## Examples
+
+### Set version
+
+```yaml
+name: Terragrunt
+on:
+  push:
+    branches:
+      - main
+jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    name: Terragrunt
+    steps:
+      - name: Terragrunt Install
+        uses: userbradley/action-terragrunt-install@v1.1.0
+        with:
+          version: "v0.51.6"
+```
 
 ## License
 
