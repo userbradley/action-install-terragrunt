@@ -1,25 +1,33 @@
-name: 'Install Terragrunt'
-description: 'Installs the specified version of Terragrunt'
-
-inputs:
-  terragrunt-version:
-    description: 'Version of Terragrunt you want to install'
-    required: true
-    default: 'v0.47.0'
-runs:
-  using: "composite"
-  steps:
-    - id: path
-      run: echo "${{ github.action_path }}" >> $GITHUB_PATH # Set the path so that the `install.sh` works
-      shell: bash
-    - id: install
-      run: install.sh
-      shell: bash
-      env:
-        VERSION: ${{ inputs.terragrunt-version }}
-
+name: Install Terragrunt
+description: GitHub Action to install terragrunt with the specified version
 branding:
   icon: align-justify
   color: blue
-
-author: 'userbradley'
+author: userbradley
+inputs:
+  version:
+    description: Version of Terragrunt that should be installed
+    required: false
+    default: "v0.54.12"
+runs:
+  using: composite
+  steps:
+    - name: Cache
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: bin/terragrunt
+        key: terragrunt-${{ inputs.version }}
+    - name: Make Directory
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: sh
+      run: mkdir -p bin
+    - name: Download Binary
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: sh
+      run: wget -q -O bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/${{ inputs.version }}/terragrunt_linux_amd64 -q
+    - name: Configure file permissions and setup path
+      shell: sh
+      run: |
+        chmod +x bin/terragrunt
+        echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
